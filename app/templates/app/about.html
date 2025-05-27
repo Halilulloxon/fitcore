@@ -1,0 +1,585 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sog'lom Nafas</title>
+
+	<link rel="icon" type="image/x-icon" href="{% static 'assets/images/favicon.png' %}">
+
+	<!-- Google-Fonts -->
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+	<!-- Font Awesome -->
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+	<!-- Bootstrap -->
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Carousel -->
+
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/owl.theme.default.min.css' %}">
+
+	<!-- Venobox -->
+
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/venobox.min.css' %}">
+
+	<!-- Assest File -->
+
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+
+</head>
+<body>
+
+	<!-- Start Site-Header -->
+
+	<header class="site-header">
+		<div class="top-bar">
+			<div class="container">
+				<div class="top-left">
+					<div class="mail">
+						<a href="mailto:halilullohayotullo0608@gmail.com"><i class="fa-solid fa-envelope"></i>halilullohayotullo0608@gmail.com</a>
+					</div>
+					<div class="location">
+						<i class="fa-solid fa-location-dot"></i>Amir Temur shoh ko'chasi, 108-uy TATU
+					</div>
+				</div>
+				<div class="top-right">
+					<div class="phone">
+						<a href="tel:+998332530601"><i class="fa-solid fa-phone"></i>(998) 33-253-0601</a>
+					</div>
+					<div class="separator"></div>
+					<div class="social">
+						<a href="https://www.youtube.com/@Avatar_The_Last_Airbender_ATLA"><i class="fa-brands fa-youtube"></i></a>
+						<a href="https://t.me/+82AIyROjJaJkOGEy"><i class="fa-brands fa-telegram"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="menu-bar">
+				<div class="site-logo">
+					<a href="home"><img src="{% static 'assets/images/site-logo.png' %}" alt="logo"></a>
+				</div>
+				<div class="main-menu">
+					<ul>
+						<li><a href="home">Home</a></li>
+						<li><a href="about">About</a></li>
+						<li><a href="classes">Classes</a></li>
+						<li class="dropdown">
+							<a href="#">Pages<i class="fa-solid fa-chevron-down"></i></a>
+							<ul class="sub-menu">
+								<li><a href="gallery">Gallery</a></li>
+								<li><a href="authors">Authors</a></li>
+							</ul>
+						</li>
+						<li><a href="blog">Blog</a></li>
+						<li><a href="contact">contact</a></li>
+					</ul>
+				</div>
+				<div class="button">
+					{% if user.is_authenticated %}
+					<!-- Agar foydalanuvchi tizimga kirgan bo'lsa, uning username ko'rsatiladi va logout havolasi -->
+					<p>Welcome, {{ user.username }}!</p>
+					{% csrf_token %}
+					<a href="{% url 'logout' %}" class="btn">Logout <i class="fa-solid fa-sign-out-alt"></i></a>
+					{% else %}
+					<!-- Agar foydalanuvchi tizimga kirmagan bo'lsa, "Join Now" tugmasi ko'rsatiladi -->
+					<a href="{% url 'login' %}" class="btn">Join Now <i class="fa-solid fa-angles-right"></i></a>
+					{% endif %}
+				</div>
+				<!-- Conditionally include loginpartial.html -->
+
+
+			</div>
+		</div>
+
+	</header>
+
+	<!-- End Site-Header -->
+	<!-- Start Mobail Menu -->
+
+	<div class="mobile-menu">
+		<div class="menu-bar">
+			<div class="site-logo">
+				<a href="home">
+					<img src="{% static 'assets/images/mobail-logo.png' %}" alt="logo">
+				</a>
+			</div>
+			<div class="menu-toggle">
+				<i class="fa-solid fa-bars"></i>
+			</div>
+		</div>
+		<div class="menu-content">
+			<div class="menu">
+				<ul>
+					<li><a href="home">Home</a></li>
+					<li><a href="about">About</a></li>
+					<li><a href="classes">Classes</a></li>
+					<li class="mobail-dropdown">
+						<a href="#">Pages<i class="fa-solid fa-chevron-down"></i></a>
+						<ul class="mobail-submenu">
+							<li><a href="gallery">Gallery</a></li>
+							<li><a href="authors">Authors</a></li>
+						</ul>
+					</li>
+					<li><a href="blog">Blog</a></li>
+					<li><a href="contact">contact</a></li>
+				</ul>
+			</div>
+			<div class="info">
+				<h3 class="title">Bog`lanish ma`lumotlari</h3>
+				<div class="info-box">
+					<i class="fa-solid fa-location-dot"></i>
+					Amir Temur shoh ko`chasi, 108-uy TATU
+				</div>
+				<div class="info-box">
+					<i class="fa-solid fa-phone"></i>
+					<a href="#">(998) 33-253-0601</a>
+				</div>
+				<div class="info-box">
+					<i class="fa-solid fa-envelope"></i>
+					<a href="mailto:halilullohayotullo0608@gmail.com">Bizga email yozing</a>
+				</div>
+			</div>
+			<div class="component">
+				<div class="button">
+					{% if user.is_authenticated %}
+					<!-- Agar foydalanuvchi tizimga kirgan bo'lsa, uning username ko'rsatiladi va logout havolasi -->
+					<p>Welcome, {{ user.username }}!</p>
+					{% csrf_token %}
+					<a href="{% url 'logout' %}" class="btn">Logout <i class="fa-solid fa-sign-out-alt"></i></a>
+					{% else %}
+					<!-- Agar foydalanuvchi tizimga kirmagan bo'lsa, "Join Now" tugmasi ko'rsatiladi -->
+					<a href="{% url 'login' %}" class="btn">Join Now <i class="fa-solid fa-angles-right"></i></a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- End Mobail Menu -->
+	<!-- Start Breadcrumb -->
+
+	<div class="breadcrumb-area" style="background-image: url(static/assets/images/breadcrumb-img.jpg);">
+		<div class="container">
+			<h1 class="heading">About</h1>
+			<div class="contact-box">
+				<ul>
+					<li><a href="home">Home</a></li>
+				</ul>
+				<span><i class="fa-solid fa-chevron-right"></i></span>
+				<span>About</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- End Breadcrumb -->
+	<!-- Start About  Section -->
+
+	<section class="about-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-xl-6">
+					<div class="about-left">
+						<div class="image">
+							<img src="{% static 'assets/images/about-img-1.png' %}" alt="images">
+						</div>
+						<div class="text-box">
+							<div class="count">
+								<h3>20+</h3>
+								<p>Yillik</p>
+							</div>
+							<div class="text">
+								<p>Tajriba</p>
+							</div>
+						</div>
+						<div class="image-box">
+							<img src="{% static 'assets/images/about-img-2.png' %}" alt="images">
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12 col-xl-6">
+					<div class="about-right">
+						<div class="section-title">
+							<h4 class="subtitle"><span>Biz haqimizda</span></h4>
+							<h1 class="title">Eng yaxshi fitnes sayohatingizni yuqoriga ko'taring</h1>
+						</div>
+						<p class="discription">Mutaxassis murabbiylar, zamonaviy jihozlar va fitnes sayohatingizni kuchaytirish uchun mo'ljallangan qo'llab-quvvatlovchi hamjamiyat bilan sog'liq maqsadlaringizga erishing.</p>
+						<div class="list-box">
+							<div class="list">
+								<ul>
+									<li><i class="fa-solid fa-bolt"></i><span>Shaxsiylashtirilgan mashqlar dasturlari</span></li>
+									<li><i class="fa-solid fa-bolt"></i><span>To'liq qo'llab-quvvatlash</span></li>
+									<li><i class="fa-solid fa-bolt"></i><span>Siz ishonishingiz mumkin bo'lgan tasdiqlangan natijalar</span></li>
+								</ul>
+							</div>
+							<div class="video">
+								<a data-autoplay="true" data-vbtype="video" href="https://youtu.be/ZJQIXGnmTfg?t=47" class="venobox icon"><i class="fa fa-play"></i><span class="cricle-1"></span><span class="cricle-2"></span><span class="cricle-3"></span></a>
+							</div>
+						</div>
+						<div class="button">
+							<a href="login" class="btn">Bugundan boshlang!<i class="fa-solid fa-arrow-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- End About  Section -->
+	<!-- Start Choose Section -->
+
+	<section class="choose-us-section">
+		<div class="section-title">
+			<h4 class="subtitle"><span>Nima uchun bizni tanlash kerak</span></h4>
+			<h1 class="title">Eng yaxshi murabbiylar, eng yaxshi jihozlar, qo'llab-quvvatlovchi hamjamiyat</h1>
+		</div>
+	</section>
+
+	<!-- End Choose Section -->
+	<!-- Start Join Section -->
+
+	<section class="join-section">
+		<div class="container">
+			<div class="join-content">
+				<div class="content-left">
+					<p>Mutaxassis murabbiylar, zamonaviy jihozlar va fitnes sayohatingizni kuchaytirish uchun mo'ljallangan qo'llab-quvvatlovchi hamjamiyat bilan sog'liq maqsadlaringizga erishing.</p>
+					<div class="box">
+						<span class="number">01</span>
+						<span class="text">Betakror shaxsiy trening</span>
+					</div>
+					<div class="box middle-item">
+						<span class="text two">Studiyalar va hashamatli qulayliklar</span>
+						<span class="number two">02</span>
+					</div>
+					<div class="box">
+						<span class="number">03</span>
+						<span class="text">Raqobatsiz guruh fitnes darslari</span>
+					</div>
+				</div>
+				<div class="content-right">
+					<img src="{% static 'assets/images/join-img.png' %}" alt="images">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- End Join Section -->
+	<!-- Work Process -->
+
+	<section class="work-process">
+		<div class="container">
+			<div class="section-title">
+				<h4 class="subtitle"><span>ISH JARAYONI</span></h4>
+				<h1 class="title">Fitness oddiy</h1>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-xl-3">
+					<div class="process-box">
+						<div class="content-wrap">
+							<div class="image">
+								<div class="img-wrapper">
+									<img src="{% static 'assets/images/process-img1.png' %}" alt="images">
+								</div>
+								<div class="process-icon">
+									<img src="{% static 'assets/images/icon-1.png' %}" alt="icon">
+								</div>
+							</div>
+							<div class="content">
+								<h3 class="title">Mashqni rejalashtirish</h3>
+								<p class="description">Kuchni birlashtirib, fitnes darajangizni oshiring</p>
+							</div>
+						</div>
+						<div class="number">01</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-xl-3">
+					<div class="process-box even">
+						<div class="content-wrap">
+							<div class="image">
+								<div class="img-wrapper">
+									<img src="{% static 'assets/images/process-img2.png' %}" alt="images">
+								</div>
+								<div class="process-icon">
+									<img src="{% static 'assets/images/icon-2.png' %}" alt="icon">
+								</div>
+							</div>
+							<div class="content">
+								<h3 class="title">Sport zali harakati</h3>
+								<p class="description">Kuchni birlashtirib, fitnes darajangizni oshiring</p>
+							</div>
+						</div>
+						<div class="number">02</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-xl-3">
+					<div class="process-box">
+						<div class="content-wrap">
+							<div class="image">
+								<div class="img-wrapper">
+									<img src="{% static 'assets/images/process-img3.png' %}" alt="images">
+								</div>
+								<div class="process-icon">
+									<img src="{% static 'assets/images/icon-3.png' %}" alt="icon">
+								</div>
+							</div>
+							<div class="content">
+								<h3 class="title"> Fitnes amaliyoti</h3>
+								<p class="description">Kuchni birlashtirib, fitnes darajangizni oshiring</p>
+							</div>
+						</div>
+						<div class="number">03</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-xl-3">
+					<div class="process-box even">
+						<div class="content-wrap">
+							<div class="image">
+								<div class="img-wrapper">
+									<img src="{% static 'assets/images/process-img4.png' %}" alt="images">
+								</div>
+								<div class="process-icon">
+									<img src="{% static 'assets/images/icon-4.png' %}" alt="icon">
+								</div>
+							</div>
+							<div class="content">
+								<h3 class="title">Muvaffaqiyat</h3>
+								<p class="description">Kuchni birlashtirib, fitnes darajangizni oshiring</p>
+							</div>
+						</div>
+						<div class="number">04</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="shape-img">
+			<img src="{% static 'assets/images/work-line.png' %}" alt="shape">
+		</div>
+	</section>
+
+	<!-- Start Testimonial Section -->
+
+	<section class="testimonial-section">
+		<div class="container">
+			<div class="section-title">
+				<h4 class="subtitle"><span>Testimonial</span></h4>
+				<h1 class="title">Buyuk insonlar nima deydi?</h1>
+			</div>
+			<div class="testimonial-carousel owl-carousel">
+				<div class="testimonial-content">
+					<h3 class="text">Faol va sog'lom bo'lish uchun ma'naviy hayot kechirish kerak</h3>
+					<div class="profile">
+						<div class="profile-img">
+							<img src="{% static 'assets/images/testimonial-man.png' %}" alt="images">
+						</div>
+						<div class="address">
+							<ul class="star-icon">
+								<li><i class="fa-solid fa-star"></i></li>
+								<li><i class="fa-solid fa-star"></i></li>
+								<li><i class="fa-solid fa-star"></i></li>
+								<li><i class="fa-solid fa-star"></i></li>
+								<li><i class="fa-solid fa-star"></i></li>
+							</ul>
+							<h4 class="name">Budda</h4>
+							<p>Ruhiy yo`lboshchi</p>
+						</div>
+					</div>
+				</div>
+				<div class="testimonial-content">
+					<h3 class="text">Sport sog‘liq uchun ham, bolalar uchun ham foydali, ularga erklik, shijoat bag‘ishlaydi, jamoada ishlashga, muvofiqlashtirishga o‘rgatadi. Sport juda muhim narsa, u hamma narsani qiladi.</h3>
+					<div class="profile">
+						<div class="profile-img">
+							<img src="{% static 'assets/images/testimonial-man2.png' %}" alt="images">
+						</div>
+						<div class="address">
+							<ul class="star-icon">
+								<li><i class="fa-solid fa-star"></i></li>
+								<li><i class="fa-solid fa-star"></i></li>
+								<li><i class="fa-solid fa-star"></i></li>
+								<li><i class="fa-solid fa-star"></i></li>
+								<li><i class="fa-solid fa-star"></i></li>
+							</ul>
+							<h4 class="name">Hakeem Olajuwon</h4>
+							<p>Basketbol O`yinchisi</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- End Testimonial Section -->
+	<!-- Start Team Member Section -->
+
+	<section class="team-section">
+		<div class="container">
+			<div class="top">
+				<div class="section-title">
+					<h4 class="subtitle"><span>Mualliflar</span></h4>
+					<h1 class="title">Bizning mualliflar jamoasi </h1>
+				</div>
+				<div class="button">
+					<a href="authors" class="btn">Mualliflar<i class="fa-solid fa-arrow-right"></i></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="team-member">
+					<div class="member-box">
+						<div class="images">
+							<img src="{% static 'assets/images/member-1.png' %}" alt="images">
+						</div>
+						<div class="bio">
+							<h4 class="name">Vaqqosov Halilulloxon</h4>
+							<p>Web Developer</p>
+							<ul class="social-icons">
+								<li><a href="https://www.facebook.com/share/1GueqfxgR6/"><i class="fa-brands fa-facebook-f"></i></a></li>
+								<li><a href="https://x.com/vaqqosov32450?t=2hyxT3eNU4Yog_S0j8RhpQ&s=09"><i class="fa-brands fa-x-twitter"></i></a></li>
+								<li><a href="https://t.me/+998999905277"><i class="fa-brands fa-telegram"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="member-box">
+						<div class="images">
+							<img src="{% static 'assets/images/member-2.png' %}" alt="images">
+						</div>
+						<div class="bio">
+							<h4 class="name">Ikromov Husniddin</h4>
+							<p>C++ developer (html,css)</p>
+							<ul class="social-icons">
+								<li><a href="https://t.me/+998943945855"><i class="fa-brands fa-telegram"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="member-box">
+						<div class="images">
+							<img src="{% static 'assets/images/member-3.png' %}" alt="images">
+						</div>
+						<div class="bio">
+							<h4 class="name">Amirov Bekjahon</h4>
+							<p>C++ developer</p>
+							<ul class="social-icons">
+								<li><a href="https://t.me/+998885111006"><i class="fa-brands fa-telegram"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- End Team Member Section -->
+	<!-- Start Brand Section -->
+
+	<section class="brand-section about-brand">
+		<div class="brand-carousel owl-carousel">
+			<div class="brand-item">
+				<img src="{% static 'assets/images/brand-1.png' %}" alt="images">
+			</div>
+			<div class="brand-item">
+				<img src="{% static 'assets/images/brand-2.png' %}" alt="images">
+			</div>
+			<div class="brand-item">
+				<img src="{% static 'assets/images/brand-3.png' %}" alt="images">
+			</div>
+			<div class="brand-item">
+				<img src="{% static 'assets/images/brand-4.png' %}" alt="images">
+			</div>
+			<div class="brand-item">
+				<img src="{% static 'assets/images/brand-5.png' %}" alt="images">
+			</div>
+			<div class="brand-item">
+				<img src="{% static 'assets/images/brand-6.png' %}" alt="images">
+			</div>
+			<div class="brand-item">
+				<img src="{% static 'assets/images/brand-1.png' %}" alt="images">
+			</div>
+			<div class="brand-item">
+				<img src="{% static 'assets/images/brand-2.png' %}" alt="images">
+			</div>
+			<div class="brand-item">
+				<img src="{% static 'assets/images/brand-3.png' %}" alt="images">
+			</div>
+			<div class="brand-item">
+				<img src="{% static 'assets/images/brand-4.png' %}" alt="images">
+			</div>
+			<div class="brand-item">
+				<img src="{% static 'assets/images/brand-5.png' %}" alt="images">
+			</div>
+			<div class="brand-item">
+				<img src="{% static 'assets/images/brand-6.png' %}" alt="images">
+			</div>
+		</div>
+	</section>
+
+	<!-- End Brand Section -->
+	<!-- Start Footer Section -->
+
+	<footer class="footer-section">
+		<div class="container">
+			<div class="footer-content">
+				<div class="discription">
+					<img src="{% static 'assets/images/site-logo.png' %}" alt="images">
+					<p>Sog‘lom turmush tarzingizni biz bilan boshlang — malakali murabbiylar, zamonaviy jihozlar va qo‘llab-quvvatlovchi jamoa sizni kutmoqda.</p>
+					<ul>
+						<li class="title">Bizni kuzatib boring:</li>
+						<li><a href="https://www.youtube.com/@Avatar_The_Last_Airbender_ATLA"><i class="fa-brands fa-youtube"></i></a></li>
+						<li><a href="https://t.me/+82AIyROjJaJkOGEy"><i class="fa-brands fa-telegram"></i></a></li>
+					</ul>
+				</div>
+				<div class="contact">
+					<h3>Aloqa</h3>
+					<ul>
+						<li><a href="mailto:halilullohayotullo0608@gmail.com"><i class="fa-solid fa-envelope"></i>halilullohayotullo0608@gmail.com</a></li>
+						<li><a href="tel:+998332530601"><i class="fa-solid fa-phone"></i>(998) 33-253-0601</a></li>
+						<li><i class="fa-solid fa-location-dot"></i>Amir Temur shoh ko'chasi, 108-uy, TATU</li>
+					</ul>
+				</div>
+				<div class="letter">
+					<h3>Yangiliklar xabarnomasi</h3>
+					<p>Bugunoq obuna bo‘ling va birinchi mashg‘ulotlar to‘plamingizga ega bo‘ling.</p>
+					<form action="{% url 'contact' %}" method="get">
+						<div class="mail">
+							<input type="email" name="usermail" placeholder="Email manzilingizni kiriting">
+							{% csrf_token %}
+							<button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<p class="end-text">Barcha huquqlar himoyalangan © FitCore 2025</p>
+		</div>
+	</footer>
+
+
+
+	<!-- End Footer Section -->
+	<!-- Search Window -->
+
+	<div class="search-window">
+		<button class="search-close"><i class="fa-solid fa-xmark"></i></button>
+		<form method="post" action="blog">
+			{% csrf_token %}
+			<div class="form-group">
+				<input type="search" name="search-field" value="" placeholder="Bu yerda qidiring" required="">
+				<button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+			</div>
+		</form>
+	</div>
+
+	<!-- Script Fill -->
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'assets/js/venobox.min.js' %}"></script>
+	<script src="{% static 'assets/js/script.js' %}"></script>
+
+</body>
+</html>
